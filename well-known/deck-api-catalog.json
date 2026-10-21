@@ -1,0 +1,94 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://api.deck.co/v2",
+      "service-desc": [
+        {
+          "href": "https://deck.co/openapi.json",
+          "type": "application/vnd.oai.openapi+json;version=3.1"
+        },
+        {
+          "href": "https://docs.deck.co/api-reference/v2.json",
+          "type": "application/vnd.oai.openapi+json;version=3.1"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://docs.deck.co/api-reference",
+          "type": "text/html"
+        },
+        {
+          "href": "https://docs.deck.co/api/using-the-api",
+          "type": "text/html"
+        }
+      ],
+      "service-meta": [
+        {
+          "href": "https://docs.deck.co/api/errors",
+          "type": "text/html"
+        },
+        {
+          "href": "https://docs.deck.co/api/api-status-and-changes",
+          "type": "text/html"
+        },
+        {
+          "href": "https://docs.deck.co/api/rate-limits",
+          "type": "text/html"
+        },
+        {
+          "href": "https://deck.co/errors.json",
+          "type": "application/json"
+        },
+        {
+          "href": "https://deck.co/api/status",
+          "type": "application/json"
+        },
+        {
+          "href": "https://deck.co/errors",
+          "type": "text/html"
+        },
+        {
+          "href": "https://deck.co/rate-limits",
+          "type": "text/html"
+        },
+        {
+          "href": "https://deck.co/.well-known/oauth-authorization-server",
+          "type": "application/json"
+        },
+        {
+          "href": "https://deck.co/.well-known/oauth-protected-resource",
+          "type": "application/json"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://status.deck.co/",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://docs.deck.co/mcp",
+      "service-desc": [
+        {
+          "href": "https://deck.co/.well-known/mcp.json",
+          "type": "application/json"
+        },
+        {
+          "href": "https://deck.co/.well-known/mcp/server-card.json",
+          "type": "application/json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://deck.co/mcp",
+          "type": "text/html"
+        },
+        {
+          "href": "https://docs.deck.co/ai",
+          "type": "text/html"
+        }
+      ]
+    }
+  ]
+}

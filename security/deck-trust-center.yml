@@ -1,0 +1,22 @@
+generated: '2026-10-20'
+method: searched
+probe: true
+source: https://trust.deck.co/
+url: https://trust.deck.co/
+certifications:
+- SOC 2
+- PCI DSS
+- HIPAA
+- FedRAMP
+- GDPR
+evidence:
+- source: https://trust.deck.co/
+  keywords:
+  - soc 2
+  - soc2
+  - pci dss
+  - pci-dss
+  - hipaa
+  - fedramp
+  - trust center
+  - gdpr

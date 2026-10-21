@@ -1,23 +1,133 @@
 aid: deck
+
 name: Deck
-description: 'Deck is a company surfaced via the API Evangelist harvest backlog (source: g2-catalog) and
-  added to the network as a stub for full-pipeline profiling.'
+
+image: https://deck.co/og/og-home.png
+
+description: 'Deck provides a platform that enables agents to access and automate interactions with websites that lack public APIs. By securely handling user credentials, including 2FA and captchas, Deck’s agents can fetch bills, submit claims, make payments, and perform other workflows across a wide range of services such as utilities, insurance, and subscription platforms. The solution offers audit trails, compliance with SOC 2 Type II and PCI DSS, and customizable automation for enterprises seeking to integrate legacy web portals into their digital processes.'
+
 url: https://raw.githubusercontent.com/api-evangelist/deck/refs/heads/main/apis.yml
+
 x-type: company
+
 x-source: harvest:g2-catalog
-x-tier: stub
-x-tier-reason: harvest
+
+x-tier: profiled
+x-tier-reason: enrichment pass 2026-10-20 (modular-v1; was harvest)
+
 specificationVersion: '0.20'
+
 created: '2026-10-20'
+
 modified: '2026-10-20'
+
 tags:
 - Company
-apis: []
+- Automation
+- API Integration
+- Enterprise
+- Security
+
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+
 common:
+- type: AgenticAccess
+  url: agentic-access/deck-agentic-access.yml
+- type: RateLimits
+  url: rate-limits/deck-rate-limits.yml
+- type: Plans
+  url: plans/deck-plans-pricing.yml
+- type: Spectral
+  url: rules/deck-rules.yml
+- type: JSONLD
+  url: json-ld/deck-context.jsonld
+- type: Vocabulary
+  url: vocabulary/deck-vocabulary.yml
+- type: Webhooks
+  url: asyncapi/deck-webhooks.yml
+- type: DataModel
+  url: data-model/deck-data-model.yml
+- type: Conventions
+  url: conventions/deck-conventions.yml
+- type: Compliance
+  url: https://trust.deck.co/
+- type: Security
+  url: security/deck-vulnerability-disclosure.yml
+- type: Authentication
+  url: authentication/deck-authentication.yml
+- type: ErrorCatalog
+  url: errors/deck-problem-types.yml
+- type: Conformance
+  url: conformance/deck-conformance.yml
+- type: LLMsTxt
+  url: llms/deck-llms.txt
+- type: AgentCard
+  url: a2a/deck-a2a.yml
+- type: WellKnown
+  url: well-known/deck-well-known.yml
+- type: Hosts
+  url: hosts/deck-hosts.yml
+- type: Vendors
+  url: vendors/deck-vendors.yml
+- type: TrustCenter
+  url: security/deck-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/deck-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/deck-domain-security.yml
 - type: Website
   url: https://deck.co/
+- type: DeveloperPortal
+  url: https://deck.co
+- type: Documentation
+  url: https://docs.deck.co
+- type: APIReference
+  url: https://docs.deck.co/api-reference
+- type: GettingStarted
+  url: https://docs.deck.co/guides/quickstart
+- type: Support
+  url: https://deck.co/contact
+- type: Blog
+  url: https://deck.co/blog
+- type: GitHubOrganization
+  url: https://github.com/buildwithdeck
+- type: Pricing
+  url: https://deck.co/pricing
+
+apis:
+- aid: deck:deck-connection-api
+  name: Deck Connection API
+  description: Manage connections
+  tags:
+  - Connection
+  properties:
+  - type: OpenAPI
+    url: openapi/deck-connection-api-openapi.yml
+- aid: deck:deck-jobs-api
+  name: Deck Jobs API
+  description: Endpoints related to jobs.
+  tags:
+  - Jobs
+  properties:
+  - type: OpenAPI
+    url: openapi/deck-jobs-api-openapi.yml
+- aid: deck:deck-link-api
+  name: Deck Link API
+  description: >-
+    These endpoints are used by the Link widget. They can also be used for creating your own UX experience
+    and connecting data from utility data sources.
+  tags:
+  - Link
+  properties:
+  - type: OpenAPI
+    url: openapi/deck-link-api-openapi.yml
+x-enrichment:
+  date: '2026-10-20'
+  status: enriched
+  artifacts_added: 32
+  pass: modular-v1
+  engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local

@@ -1,0 +1,75 @@
+# Deck API Documentation
+
+> The Deck API gives you programmatic access to computer use agents and agent infrastructure.
+
+## Get Started
+
+- [Deck API documentation](https://docs.deck.co/index.md): The Deck API gives you programmatic access to computer use agents and agent infrastructure.
+- [How Deck works](https://docs.deck.co/how-deck-works.md): Platform architecture, agent orchestration, and the execution model.
+
+## Concepts
+
+- [Concepts](https://docs.deck.co/concepts/overview.md): The building blocks of every Deck integration.
+- [Agents](https://docs.deck.co/concepts/agents.md): An agent is an automated worker scoped to a use case.
+- [Sources](https://docs.deck.co/concepts/sources.md): A source is any software your agents connect to.
+- [Credentials](https://docs.deck.co/concepts/credentials.md): A credential stores authentication details for a user on a source.
+- [Sessions](https://docs.deck.co/concepts/sessions.md): A session is an isolated compute environment where tasks are executed.
+- [Tasks](https://docs.deck.co/concepts/tasks.md): A task tells an agent what to do and what to return.
+- [Task runs](https://docs.deck.co/concepts/task-runs.md): A task run is a single execution of a task.
+- [Triggers](https://docs.deck.co/concepts/triggers.md): Run a task on a schedule, fanned out across many credentials.
+- [Workflows](https://docs.deck.co/concepts/workflows.md): Chain tasks into a single execution with conditions, loops, and shared sessions.
+- [Storage](https://docs.deck.co/concepts/storage.md): Capture files during task execution and extract structured data.
+
+## Guides
+
+- [Quickstart](https://docs.deck.co/guides/quickstart.md): Go from zero to structured output in minutes.
+- [Building your auth flow](https://docs.deck.co/guides/building-auth-ui.md): Collect and store user credentials in your application.
+- [Handling interactions](https://docs.deck.co/guides/interactions.md): Respond to MFA prompts, security questions, and other mid-flow verification requests.
+- [Automate runs](https://docs.deck.co/guides/triggers.md): Schedule tasks and workflows across your credentials with fan-out, skip logic, and cost controls.
+- [Build a workflow](https://docs.deck.co/guides/workflows.md): Chain tasks with output references, conditions, loops, and failure handling in a single API call.
+- [Storage & document extraction](https://docs.deck.co/guides/storage.md): Capture documents, images, videos, and other files from external sources, and extract structured data.
+
+## API
+
+- [Using the API](https://docs.deck.co/api/using-the-api.md): Base URL, authentication, request format, and response conventions.
+- [Error handling](https://docs.deck.co/api/errors.md): Every error returns a consistent structure with a deterministic type, code, and request ID.
+- [Rate limits](https://docs.deck.co/api/rate-limits.md): How Deck rate limits API requests and how to handle them.
+- [Idempotency](https://docs.deck.co/api/idempotency.md): Safely retry requests without performing the same operation twice.
+- [Pagination](https://docs.deck.co/api/pagination.md): Page through list endpoint results using cursor-based pagination.
+- [Filtering list endpoints](https://docs.deck.co/api/filtering-list-endpoints.md): Narrow down API results using query parameters on list endpoints.
+- [Resource IDs](https://docs.deck.co/api/resource-ids.md): How Deck identifies objects across the API.
+- [External IDs](https://docs.deck.co/api/external-ids.md): Map Deck credentials to users in your system with external identifiers.
+- [API status and changes](https://docs.deck.co/api/api-status-and-changes.md): Versioning, breaking changes, and how Deck communicates platform updates.
+
+## Events & Deliveries
+
+- [Events](https://docs.deck.co/events/events.md): React to changes in real time. Deck pushes events to your infrastructure as they happen.
+- [Destinations and deliveries](https://docs.deck.co/events/destinations-and-deliveries.md): Configure where events are sent, track delivery status, and handle retries.
+- [Webhook best practices](https://docs.deck.co/events/webhook-best-practices.md): Build reliable, resilient event consumers for Deck webhooks.
+- [Events reference](https://docs.deck.co/events/events-reference.md): Event format, naming conventions, and the full list of event types.
+
+## Platform
+
+- [Agent observability](https://docs.deck.co/platform/agent-observability.md): Visibility into agent behavior through screenshots and reasoning traces.
+- [Credential management](https://docs.deck.co/platform/credential-management.md): How Deck Vault stores, reuses, and deletes user credentials.
+- [Stealth mode](https://docs.deck.co/platform/stealth-mode.md): Reliable access to protected sources for authenticated users.
+
+## Build with AI
+
+- [Build with AI](https://docs.deck.co/ai.md): Context prompts and rules files for building Deck integrations with AI coding agents.
+
+## Account
+
+- [Organizations](https://docs.deck.co/guides/account/organizations.md): Create and manage your Deck organization.
+- [Profile](https://docs.deck.co/guides/account/profile.md): Manage your personal account settings, security, and connected accounts.
+- [Roles & Permissions](https://docs.deck.co/guides/account/roles-and-permissions.md): Control access to your Deck organization.
+- [Single Sign-On](https://docs.deck.co/guides/account/sso.md): Sign in with Google or GitHub, or connect your identity provider.
+
+## API Reference
+
+- [Deck API OpenAPI Spec](https://docs.deck.co/api-reference/v2.json): The complete OpenAPI specification for the Deck v2 API covering Agents, Sources, Tasks, Task Runs, Credentials, Sessions, Storage, Event Destinations, Events, and Event Types.
+
+## Migration Guides
+
+- [Migrating from v1](https://docs.deck.co/migrations/migrating-from-v1.md): What changes between v1 and v2, and how to move your integration over.
+- [Migrating from Sustainability](https://docs.deck.co/migrations/migrating-from-sustainability.md): Moving from the legacy Sustainability, Bill, or Credit Risk APIs to Deck v2.

@@ -1,0 +1,24 @@
+generated: '2026-10-20'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://docs.deck.co/api/pagination.md
+sources:
+- https://docs.deck.co/api/pagination.md
+- https://docs.deck.co/api/filtering-list-endpoints.md
+- https://docs.deck.co/guides/quickstart.md
+- https://docs.deck.co/concepts/credentials.md
+idempotency:
+  coverage: none
+pagination:
+  style: cursor-based
+  params:
+  - limit
+  - cursor
+  response_fields:
+  - data
+  - has_more
+  - next_cursor
+  - request_id
+authentication: Bearer token in Authorization header
+request_tracing: request_id field in response
+docs: https://docs.deck.co/api/pagination.md

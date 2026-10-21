@@ -1,0 +1,19 @@
+generated: '2026-10-20'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://docs.deck.co/concepts/credentials.md
+sources:
+- https://docs.deck.co/concepts/credentials.md
+- https://docs.deck.co/guides/building-auth-ui.md
+- https://docs.deck.co/guides/quickstart.md
+description: Deck authenticates to source websites using credential objects that specify an `auth_method` and associated fields such as username,
+  password, and optional source‑specific fields.
+schemes:
+- type: other
+  name: username_password
+  evidence: '`auth_method`: `username_password`'
+- type: other
+  name: source_fields
+  evidence: '`auth_method`: `source_fields`'
+docs: https://docs.deck.co/concepts/credentials.md
+note: 3 extracted row(s) were dropped because their quote was not on the page.

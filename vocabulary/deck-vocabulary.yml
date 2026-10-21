@@ -1,0 +1,305 @@
+generated: '2026-10-20'
+method: derived
+generator: derive-vocabulary.py
+source: openapi/deck-openapi.json
+vocabulary:
+  name: Deck Domain Vocabulary
+  description: 'Terms declared by Deck''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions. Derived,
+    not authored.'
+  version: '2026-10-20'
+  terms:
+  - term: Jobs
+    definition: Endpoints related to jobs.
+    tags:
+    - Resource Group
+    source: openapi/deck-openapi.json
+  - term: Link
+    definition: These endpoints are used by the Link widget. They can also be used for creating your own UX experience and connecting data from
+      utility data sources.
+    tags:
+    - Resource Group
+    source: openapi/deck-openapi.json
+  - term: Connection
+    definition: Manage connections
+    tags:
+    - Resource Group
+    source: openapi/deck-openapi.json
+  - term: AccessTokenRequest
+    definition: 'Object declared by the contract with fields: access_token.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/AccessTokenRequest
+  - term: AccountSelectModeEnum
+    definition: 'Enumeration declared by the contract with values: All, Single, Multiple.'
+    tags:
+    - Enumeration
+    source: openapi/deck-openapi.json#/components/schemas/AccountSelectModeEnum
+  - term: AlreadyRunningJobResponse
+    definition: 'Object declared by the contract with fields: job_id, job_guid, message, error_message.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/AlreadyRunningJobResponse
+  - term: AutoRefreshUpdateRequest
+    definition: 'Object declared by the contract with fields: access_token, auto_refresh.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/AutoRefreshUpdateRequest
+  - term: BadRequestJobResponse
+    definition: 'Object declared by the contract with fields: error_code, message, error_message.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/BadRequestJobResponse
+  - term: BetaSourceStatusEnum
+    definition: 'Enumeration declared by the contract with values: LiveAndBeta, OnlyLive, OnlyBeta.'
+    tags:
+    - Enumeration
+    source: openapi/deck-openapi.json#/components/schemas/BetaSourceStatusEnum
+  - term: ConnectionContextResponse
+    definition: 'Object declared by the contract with fields: connection_id, provider, connection_status, connection_status_timestamp, connection_status_reason,
+      num_of_entities, entities.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/ConnectionContextResponse
+  - term: ConnectionPublicTokenExchangeRequest
+    definition: 'Object declared by the contract with fields: public_token.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/ConnectionPublicTokenExchangeRequest
+  - term: ConnectionPublicTokenExchangeResponse
+    definition: 'Object declared by the contract with fields: access_token, connection_id, fields.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/ConnectionPublicTokenExchangeResponse
+  - term: ConnectivityStatusEnum
+    definition: 'Enumeration declared by the contract with values: New, Connecting, Connected, Disconnected, Error.'
+    tags:
+    - Enumeration
+    source: openapi/deck-openapi.json#/components/schemas/ConnectivityStatusEnum
+  - term: DocumentInfo
+    definition: 'Object declared by the contract with fields: document_id, file_type, metadata, file_name, file_size, fetch_date.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/DocumentInfo
+  - term: DocumentListResponse
+    definition: 'Object declared by the contract with fields: documents.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/DocumentListResponse
+  - term: Entity
+    definition: 'Object declared by the contract with fields: account_number.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/Entity
+  - term: ErrorCategoryEnum
+    definition: 'Enumeration declared by the contract with values: INVALID_REQUEST, INVALID_RESULT, INVALID_INPUT, DATA_SOURCE_ERROR, RATE_LIMIT_EXCEEDED,
+      API_ERROR, CONNECTION_ERROR, RECAPTCHA_ERROR, FETCH_BALANCE, ADD_PAYMENT_METHOD, FETCH_PAYMENT_METHODS, PAYMENT.'
+    tags:
+    - Enumeration
+    source: openapi/deck-openapi.json#/components/schemas/ErrorCategoryEnum
+  - term: ErrorCodeEnum
+    definition: 'Enumeration declared by the contract with values: DATA_SOURCE_NOT_FOUND, DATA_SOURCE_NOT_RESPONDING, PRODUCT_NOT_READY, CONNECTION_NOT_FOUND,
+      CONNECTION_FAILED, INVALID_CREDENTIALS, LIVE_CONNECTIVITY_NOT_ENABLED, PRODUCT_NOT_ENABLED, NO_ACCOUNTS, NO_STATEMENTS, CONNECTION_LOCKED,
+      BLOCKED_BY_PIN. (20 more)'
+    tags:
+    - Enumeration
+    source: openapi/deck-openapi.json#/components/schemas/ErrorCodeEnum
+  - term: ErrorMessageResponse
+    definition: 'Object declared by the contract with fields: error_category, error_code, error_message, display_message.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/ErrorMessageResponse
+  - term: FieldTypeEnum
+    definition: 'Enumeration declared by the contract with values: Text, Password.'
+    tags:
+    - Enumeration
+    source: openapi/deck-openapi.json#/components/schemas/FieldTypeEnum
+  - term: GetConnectionAccountsRequestAccount
+    definition: 'Object declared by the contract with fields: account_number, is_selected.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/GetConnectionAccountsRequestAccount
+  - term: GetConnectionAccountsResponse
+    definition: 'Object declared by the contract with fields: accounts.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/GetConnectionAccountsResponse
+  - term: GetConnectionAccountsResponseAccount
+    definition: 'Object declared by the contract with fields: account_number, is_selected.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/GetConnectionAccountsResponseAccount
+  - term: IJobRequest
+    definition: 'Object declared by the contract with fields: job_code, input.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/IJobRequest
+  - term: InvalidateAccessTokenResponse
+    definition: 'Object declared by the contract with fields: new_access_token.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/InvalidateAccessTokenResponse
+  - term: JobResponse
+    definition: 'Object declared by the contract with fields: job_guid, job_code.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/JobResponse
+  - term: LanguageEnum
+    definition: 'Enumeration declared by the contract with values: EN, ES, FR, DE, IT, PT, NL, PL, SV, DA, NO, ET. (3 more)'
+    tags:
+    - Enumeration
+    source: openapi/deck-openapi.json#/components/schemas/LanguageEnum
+  - term: LinkAccountListResponse
+    definition: 'Object declared by the contract with fields: accounts.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/LinkAccountListResponse
+  - term: LinkAccountListResponseAccountItem
+    definition: 'Object declared by the contract with fields: account_id, account_number, account_address.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/LinkAccountListResponseAccountItem
+  - term: LinkAccountSelectRequest
+    definition: 'Object declared by the contract with fields: link_token, accounts.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/LinkAccountSelectRequest
+  - term: LinkClientInfoResponse
+    definition: 'Object declared by the contract with fields: name, image_url, language, update_mode, terms_of_use_url, privacy_policy_url, mode,
+      account_select_mode, allow_document_upload, show_step_consent, show_step_add_source, show_step_select_account. (1 more)'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/LinkClientInfoResponse
+  - term: LinkClientInfoResponseUpdateMode
+    definition: 'Object declared by the contract with fields: source.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/LinkClientInfoResponseUpdateMode
+  - term: LinkConnectRequest
+    definition: 'Object declared by the contract with fields: link_token, source_id, fields, terms_of_use_url, privacy_policy_url.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/LinkConnectRequest
+  - term: LinkConnectRequestField
+    definition: 'Object declared by the contract with fields: field_name, field_value.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/LinkConnectRequestField
+  - term: LinkConnectResponse
+    definition: 'Object declared by the contract with fields: public_token.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/LinkConnectResponse
+  - term: LinkConnectionStatusResponse
+    definition: 'Object declared by the contract with fields: status, additional_information.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/LinkConnectionStatusResponse
+  - term: LinkConnectionStatusResponseEnum
+    definition: 'Enumeration declared by the contract with values: New, Connecting, Connected, InvalidCredentials, Error, MfaMethodChoice, MfaQuestion,
+      MfaQuestionInvalidAnswer, MfaQuestionNoAnswer, Captcha, SecurityQuestion, AccountSelection.'
+    tags:
+    - Enumeration
+    source: openapi/deck-openapi.json#/components/schemas/LinkConnectionStatusResponseEnum
+  - term: LinkSourcesRequest
+    definition: 'Object declared by the contract with fields: link_token, source_id, search.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/LinkSourcesRequest
+  - term: LinkSourcesResponse
+    definition: 'Object declared by the contract with fields: sources.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/LinkSourcesResponse
+  - term: LinkSourcesResponseSource
+    definition: 'Object declared by the contract with fields: source_id, name, logo_url, country, website, fields.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/LinkSourcesResponseSource
+  - term: LinkSourcesResponseSourceField
+    definition: 'Object declared by the contract with fields: field_number, field_name, field_label, field_value, field_type.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/LinkSourcesResponseSourceField
+  - term: LinkTokenCreateRequest
+    definition: 'Object declared by the contract with fields: language, countries, source_ids, source_types, beta_source_status, update, webhook_url,
+      auto_refresh, parsing_method, latest_invoice_only.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/LinkTokenCreateRequest
+  - term: LinkTokenCreateRequestUpdate
+    definition: 'Object declared by the contract with fields: access_token, mode.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/LinkTokenCreateRequestUpdate
+  - term: LinkTokenCreateRequestUpdateModeEnum
+    definition: 'Enumeration declared by the contract with values: UpdateCredentials, Refresh, UpdateAccountSelection.'
+    tags:
+    - Enumeration
+    source: openapi/deck-openapi.json#/components/schemas/LinkTokenCreateRequestUpdateModeEnum
+  - term: LinkTokenGetResponse
+    definition: 'Object declared by the contract with fields: language, beta_source_status, countries, source_types, source_guids.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/LinkTokenGetResponse
+  - term: LinkTokenModeEnum
+    definition: 'Enumeration declared by the contract with values: Normal, UpdateCredentials, Refresh, UpdateAccountSelection.'
+    tags:
+    - Enumeration
+    source: openapi/deck-openapi.json#/components/schemas/LinkTokenModeEnum
+  - term: LinkTokenRequestResponse
+    definition: 'Object declared by the contract with fields: link_token.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/LinkTokenRequestResponse
+  - term: MfaAnswerRequest
+    definition: 'Object declared by the contract with fields: job_guid, answer.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/MfaAnswerRequest
+  - term: ParsingMethodEnum
+    definition: 'Enumeration declared by the contract with values: PdfOnly, Basic, FullSustainability, None.'
+    tags:
+    - Enumeration
+    source: openapi/deck-openapi.json#/components/schemas/ParsingMethodEnum
+  - term: Provider
+    definition: 'Object declared by the contract with fields: id, name.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/Provider
+  - term: RawDocumentRequest
+    definition: 'Object declared by the contract with fields: access_token, document_id.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/RawDocumentRequest
+  - term: RefreshConnectionRequest
+    definition: 'Object declared by the contract with fields: access_token, account_numbers.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/RefreshConnectionRequest
+  - term: ScrapingStatusEnum
+    definition: 'Enumeration declared by the contract with values: New, Connecting, CredentialsSent, InvalidCredentials, ConnectedCredentials,
+      SecurityAnswerRequired, SecurityAnswerInvalid, SecurityQuestionTimeout, MfaMethodChoiceRequired, MfaCodeRequired, MfaCodeInvalid, MfaCodeTimeout.
+      (12 more)'
+    tags:
+    - Enumeration
+    source: openapi/deck-openapi.json#/components/schemas/ScrapingStatusEnum
+  - term: SecurityQuestionAnswerSaveRequest
+    definition: 'Object declared by the contract with fields: link_token, answer.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/SecurityQuestionAnswerSaveRequest
+  - term: SecurityQuestionResponse
+    definition: 'Object declared by the contract with fields: question.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/SecurityQuestionResponse
+  - term: SelectConnectionAccountsRequest
+    definition: 'Object declared by the contract with fields: access_token, accounts.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/SelectConnectionAccountsRequest
+  - term: WebhookUpdateRequest
+    definition: 'Object declared by the contract with fields: access_token, url, is_active.'
+    tags:
+    - Object
+    source: openapi/deck-openapi.json#/components/schemas/WebhookUpdateRequest

@@ -1,0 +1,35 @@
+generated: '2026-10-20'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/deck-openapi.json
+format: custom
+envelope:
+  media_type: application/json
+  schema: ErrorMessageResponse
+coverage:
+  operations: 23
+  statuses_declared: 3
+problems:
+- status: 400
+  title: Bad Request
+  description: Bad Request
+  operations: 23
+  media_types:
+  - application/json
+  - text/json
+  schema: ErrorMessageResponse
+- status: 401
+  title: Unauthorized
+  description: Unauthorized - Invalid API key
+  operations: 15
+  media_types: []
+  schema: null
+- status: 409
+  title: Conflict
+  description: Conflict
+  operations: 1
+  media_types:
+  - application/json
+  - text/json
+  schema: AlreadyRunningJobResponse

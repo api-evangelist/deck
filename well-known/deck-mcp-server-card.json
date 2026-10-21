@@ -1,0 +1,23 @@
+{
+  "version": "1.0",
+  "protocolVersion": "2025-11-25",
+  "serverInfo": {
+    "name": "Deck Docs",
+    "title": "Deck MCP server",
+    "version": "1.0.0",
+    "description": "Official first-party MCP server for Deck. Exposes Deck documentation and API reference as tools over Streamable HTTP.",
+    "homepage": "https://deck.co"
+  },
+  "transport": {
+    "type": "streamable-http",
+    "url": "https://docs.deck.co/mcp"
+  },
+  "capabilities": {
+    "tools": true,
+    "resources": true,
+    "prompts": false
+  },
+  "authentication": {
+    "schemes": []
+  }
+}

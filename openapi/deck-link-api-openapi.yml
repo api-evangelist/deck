@@ -1,0 +1,991 @@
+openapi: 3.2.0
+info:
+  title: Deck Link API
+  description: '# Deck API makes it straightforward for users to connect to any portal securely and quickly.
+
+
+    ### Welcome! Looking for a quick introduction to our API? Check out the 🚀Quickstart guide.
+
+
+    Starting on the sandbox server is easy:
+
+
+    1. Create an account using the dashboard to get your client id and sandbox secret
+
+    2. Enter your client id and sandbox secret in the Authentication section below
+
+    3. Hit the "Try" buttons below for each endpoint.
+
+
+    Happy querying!'
+  contact:
+    name: Ready to start building? Contact us!
+    url: https://deck.co
+  version: v1
+servers:
+- url: https://sandbox.deck.co/api/v1
+  description: Deck Sandbox API
+- url: https://live.deck.co/api/v1
+  description: Deck API
+tags:
+- name: Link
+  description: These endpoints are used by the Link widget. They can also be used for creating your own UX experience and connecting data from utility data sources.
+paths:
+  /link/token/create:
+    post:
+      tags:
+      - Link
+      summary: Create a Link Token for running a Link session
+      description: Returns a Link Token to be used in a Link session, customized with options for controlling which sources to make available.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LinkTokenCreateRequest'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LinkTokenCreateRequest'
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LinkTokenCreateRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LinkTokenRequestResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LinkTokenRequestResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+        '401':
+          description: Unauthorized - Invalid API key
+      security:
+      - client_id:
+        - ''
+        secret:
+        - ''
+      operationId: postLinkTokenCreate
+      x-operation-id-source: derived
+  /link/info:
+    post:
+      tags:
+      - Link
+      summary: Get client information
+      description: Returns information about the client currently using Datadeck for connecting data from a utility data source. The client name and logo are displayed on the first screen of the Datadeck Link widget.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LinkTokenRequestResponse'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LinkTokenRequestResponse'
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LinkTokenRequestResponse'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LinkClientInfoResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LinkClientInfoResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+      operationId: postLinkInfo
+      x-operation-id-source: derived
+  /link/sources:
+    post:
+      tags:
+      - Link
+      summary: Search sources
+      description: Returns a list of data sources based on a few search parameters
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LinkSourcesRequest'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LinkSourcesRequest'
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LinkSourcesRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LinkSourcesResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LinkSourcesResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+      operationId: postLinkSources
+      x-operation-id-source: derived
+  /link/connect:
+    post:
+      tags:
+      - Link
+      summary: Connect with credentials
+      description: Sends credential information to a utility data source and attempts to create a connection request asynchronously.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LinkConnectRequest'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LinkConnectRequest'
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LinkConnectRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LinkConnectResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LinkConnectResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+      operationId: postLinkConnect
+      x-operation-id-source: derived
+  /link/connection/status:
+    post:
+      tags:
+      - Link
+      summary: Get the status of an attempted connection
+      description: Returns the connectivity status about a connection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LinkTokenRequestResponse'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LinkTokenRequestResponse'
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LinkTokenRequestResponse'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LinkConnectionStatusResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LinkConnectionStatusResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+      operationId: postLinkConnectionStatus
+      x-operation-id-source: derived
+  /link/authentication/mfa/get:
+    post:
+      tags:
+      - Link
+      summary: Get the security question
+      description: Call this endpoint when receiving the connection status MfaQuestion, to get the text of the MFA security question
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LinkTokenRequestResponse'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LinkTokenRequestResponse'
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LinkTokenRequestResponse'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityQuestionResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SecurityQuestionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+      operationId: postLinkAuthenticationMfaGet
+      x-operation-id-source: derived
+  /link/authentication/mfa/answer:
+    post:
+      tags:
+      - Link
+      summary: Provide MFA code
+      description: Call this endpoint to send your MFA code, when receiving MfaCodeRequired or MfaCodeInvalid status from webhook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/SecurityQuestionAnswerSaveRequest'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/SecurityQuestionAnswerSaveRequest'
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/SecurityQuestionAnswerSaveRequest'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+      operationId: postLinkAuthenticationMfaAnswer
+      x-operation-id-source: derived
+  /link/account/select:
+    post:
+      tags:
+      - Link
+      summary: Select accounts
+      description: Call this endpoint to select which accounts to consider, when receiving AccountSelectionRequired status from webhook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LinkAccountSelectRequest'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LinkAccountSelectRequest'
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LinkAccountSelectRequest'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+      operationId: postLinkAccountSelect
+      x-operation-id-source: derived
+  /link/token/get:
+    post:
+      tags:
+      - Link
+      summary: Get information about a previously created link_token
+      description: Returns the associated parameters that were used when creating a link_token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LinkTokenRequestResponse'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LinkTokenRequestResponse'
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LinkTokenRequestResponse'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LinkTokenGetResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LinkTokenGetResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+        '401':
+          description: Unauthorized - Invalid API key
+      security:
+      - client_id:
+        - ''
+        secret:
+        - ''
+      operationId: postLinkTokenGet
+      x-operation-id-source: derived
+  /link/account/list:
+    post:
+      tags:
+      - Link
+      summary: Return the list of accounts found while creating connection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LinkTokenRequestResponse'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LinkTokenRequestResponse'
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LinkTokenRequestResponse'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LinkAccountListResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LinkAccountListResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+      operationId: postLinkAccountList
+      x-operation-id-source: derived
+components:
+  schemas:
+    SecurityQuestionResponse:
+      required:
+      - question
+      type: object
+      properties:
+        question:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    LinkTokenRequestResponse:
+      required:
+      - link_token
+      type: object
+      properties:
+        link_token:
+          minLength: 1
+          type: string
+          description: The link_token, must be provided when calling Link endpoints, for identifying the Link session.
+      additionalProperties: false
+    ErrorCategoryEnum:
+      enum:
+      - INVALID_REQUEST
+      - INVALID_RESULT
+      - INVALID_INPUT
+      - DATA_SOURCE_ERROR
+      - RATE_LIMIT_EXCEEDED
+      - API_ERROR
+      - CONNECTION_ERROR
+      - RECAPTCHA_ERROR
+      - FETCH_BALANCE
+      - ADD_PAYMENT_METHOD
+      - FETCH_PAYMENT_METHODS
+      - PAYMENT
+      type: string
+    LanguageEnum:
+      enum:
+      - EN
+      - ES
+      - FR
+      - DE
+      - IT
+      - PT
+      - NL
+      - PL
+      - SV
+      - DA
+      - 'NO'
+      - ET
+      - LT
+      - LV
+      - RO
+      type: string
+    LinkSourcesResponse:
+      type: object
+      properties:
+        sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkSourcesResponseSource'
+          description: List of data sources found.
+      additionalProperties: false
+    ErrorMessageResponse:
+      type: object
+      properties:
+        error_category:
+          allOf:
+          - $ref: '#/components/schemas/ErrorCategoryEnum'
+          description: A broad categorization of the error. Safe for programmatic use.
+        error_code:
+          allOf:
+          - $ref: '#/components/schemas/ErrorCodeEnum'
+          description: The particular error code. Safe for programmatic use.
+        error_message:
+          type: string
+          description: A developer-friendly representation of the error code. This may change over time and is not safe for programmatic use.
+        display_message:
+          type:
+          - string
+          - 'null'
+          description: A user-friendly representation of the error code. null if the error is not related to user action. This may change over time and is not safe for programmatic use.
+      additionalProperties: false
+    LinkSourcesResponseSourceField:
+      required:
+      - field_label
+      - field_name
+      - field_number
+      type: object
+      properties:
+        field_number:
+          type: integer
+          format: int32
+        field_name:
+          type: string
+        field_label:
+          type: string
+        field_value:
+          type:
+          - string
+          - 'null'
+        field_type:
+          allOf:
+          - $ref: '#/components/schemas/FieldTypeEnum'
+      additionalProperties: false
+    LinkAccountSelectRequest:
+      required:
+      - link_token
+      type: object
+      properties:
+        link_token:
+          minLength: 1
+          type: string
+          description: The link_token, must be provided when calling Link endpoints, for identifying the Link session.
+        accounts:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: List of selected accounts
+      additionalProperties: false
+    LinkConnectRequest:
+      required:
+      - fields
+      - link_token
+      - source_id
+      type: object
+      properties:
+        link_token:
+          minLength: 1
+          type: string
+          description: The link_token, must be provided when calling Link endpoints, for identifying the Link session.
+        source_id:
+          type: string
+          description: Identifier of the data source to connect to.
+          format: uuid
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkConnectRequestField'
+          description: List of values provided for fields specific to the selected source
+        terms_of_use_url:
+          type:
+          - string
+          - 'null'
+          description: The accepted terms of use by the end-user
+        privacy_policy_url:
+          type:
+          - string
+          - 'null'
+          description: The accepted privacy policy by the end-user
+      additionalProperties: false
+    LinkClientInfoResponseUpdateMode:
+      required:
+      - source
+      type: object
+      properties:
+        source:
+          allOf:
+          - $ref: '#/components/schemas/LinkSourcesResponseSource'
+          description: When using Link in Update mode, this contains information about the original data source for which we are updating the connection.
+      additionalProperties: false
+    BetaSourceStatusEnum:
+      enum:
+      - LiveAndBeta
+      - OnlyLive
+      - OnlyBeta
+      type: string
+    LinkTokenGetResponse:
+      type: object
+      properties:
+        language:
+          allOf:
+          - $ref: '#/components/schemas/LanguageEnum'
+          description: The language used for the Link session corresponding to the provided Link token
+        beta_source_status:
+          allOf:
+          - $ref: '#/components/schemas/BetaSourceStatusEnum'
+          description: The beta source status filter from which data sources will be displayed during the Link session corresponding to the provided Link token.
+        countries:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: The countries filter from which data sources will be displayed during the Link session corresponding to the provided Link token
+        source_types:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: The source types filter from which data sources will be displayed during the Link session corresponding to the provided Link token
+        source_guids:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            format: uuid
+      additionalProperties: false
+    FieldTypeEnum:
+      enum:
+      - Text
+      - Password
+      type: string
+    LinkSourcesRequest:
+      required:
+      - link_token
+      type: object
+      properties:
+        link_token:
+          minLength: 1
+          type: string
+          description: The link_token, must be provided when calling Link endpoints, for identifying the Link session.
+        source_id:
+          type:
+          - string
+          - 'null'
+          description: The specific source identifier to find. If left to NULL, a list of the 15 most common data sources is returned. If specified, the search argument will be ignored.
+          format: uuid
+        search:
+          maxLength: 255
+          minLength: 3
+          type:
+          - string
+          - 'null'
+          description: A search term for filtering the list by data source name. If left to NULL or empty, a list of the 15 most common data sources is returned.
+      additionalProperties: false
+    LinkClientInfoResponse:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: Client name to display. If the client did not set his name yet, this property will be NULL and a default name should be displayed in that case.
+        image_url:
+          type: string
+          description: Client logo URL to display.
+        language:
+          allOf:
+          - $ref: '#/components/schemas/LanguageEnum'
+          description: The language that Link should be displayed in.
+        update_mode:
+          allOf:
+          - $ref: '#/components/schemas/LinkClientInfoResponseUpdateMode'
+          description: Information about the source, if using Link in Update mode.
+        terms_of_use_url:
+          type:
+          - string
+          - 'null'
+          description: Your terms of use to be accepted by the end-user
+        privacy_policy_url:
+          type:
+          - string
+          - 'null'
+          description: Your privacy policy to be accepted by the end-user
+        mode:
+          allOf:
+          - $ref: '#/components/schemas/LinkTokenModeEnum'
+          description: Indicates the mode in which the Link widget should run
+        account_select_mode:
+          allOf:
+          - $ref: '#/components/schemas/AccountSelectModeEnum'
+          description: Indicates the mode to select accounts
+        allow_document_upload:
+          type: boolean
+          description: Indicates if the Link User should be able to upload documents by himself in Link
+        show_step_consent:
+          type: boolean
+          description: Indicates if link widget should show the consent screen
+        show_step_add_source:
+          type: boolean
+          description: Indicates if link widget should show the add source screen
+        show_step_select_account:
+          type: boolean
+          description: Indicates if link widget should show the account selection screen
+        show_step_add_account:
+          type: boolean
+          description: Indicates if link widget should show the add account screen
+      additionalProperties: false
+    LinkTokenCreateRequestUpdate:
+      required:
+      - access_token
+      - mode
+      type: object
+      properties:
+        access_token:
+          minLength: 1
+          type: string
+          description: The `access_token` associated with the existing Connection to update
+        mode:
+          allOf:
+          - $ref: '#/components/schemas/LinkTokenCreateRequestUpdateModeEnum'
+          description: 'Set which mode you want to use between Update and Refresh.
+
+            Update mode will ask to enter the password, for updating it.
+
+            Refresh mode will re-use existing known credentials and will only let the user interact with the MFA step during sign-in.'
+      additionalProperties: false
+    LinkTokenCreateRequest:
+      type: object
+      properties:
+        language:
+          allOf:
+          - $ref: '#/components/schemas/LanguageEnum'
+          description: The language that Link should be displayed in.
+        countries:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Specify an array of Datadeck-supported country codes using the ISO-3166-1 alpha-2 country code standard. Sources from all listed countries will be shown.
+        source_ids:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            format: uuid
+          description: You can specify exactly the sources to be shown in Link by providing a list of source ids.
+        source_types:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: You can limit the sources to be shown in Link by specifying which source types to be shown in Link.
+        beta_source_status:
+          allOf:
+          - $ref: '#/components/schemas/BetaSourceStatusEnum'
+          description: To control which sources to be shown regarding their beta status
+        update:
+          allOf:
+          - $ref: '#/components/schemas/LinkTokenCreateRequestUpdate'
+          description: Used for launching Link in update or refresh mode
+        webhook_url:
+          type:
+          - string
+          - 'null'
+          description: The webhook URL to receive update events.
+        auto_refresh:
+          type:
+          - boolean
+          - 'null'
+          description: If true, the Link session will automatically refresh the data.
+        parsing_method:
+          allOf:
+          - $ref: '#/components/schemas/ParsingMethodEnum'
+          description: Choose the type of parsing needed for the connection
+        latest_invoice_only:
+          type:
+          - boolean
+          - 'null'
+          description: Specifies whether to collect only the latest invoice data or all available invoices
+      additionalProperties: false
+    LinkTokenModeEnum:
+      enum:
+      - Normal
+      - UpdateCredentials
+      - Refresh
+      - UpdateAccountSelection
+      type: string
+    LinkAccountListResponseAccountItem:
+      type: object
+      properties:
+        account_id:
+          type: string
+          description: The account identifier
+          format: uuid
+        account_number:
+          type: string
+        account_address:
+          type:
+          - string
+          - 'null'
+          description: The account's address if available
+      additionalProperties: false
+    LinkSourcesResponseSource:
+      type: object
+      properties:
+        source_id:
+          type: string
+          description: Unique identifier of the source with Datadeck.
+          format: uuid
+        name:
+          type: string
+          description: Name of the data source.
+        logo_url:
+          type:
+          - string
+          - 'null'
+          description: Url to display the data source logo, when available (can be null).
+        country:
+          maxLength: 2
+          minLength: 2
+          type:
+          - string
+          - 'null'
+          description: Country code of the data source in ISO 3166 format (2 characters).
+        website:
+          type:
+          - string
+          - 'null'
+          description: Website of the data source, useful for resetting a password.
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkSourcesResponseSourceField'
+          description: The required fields to be displayed to the user for entering his credentials. In Update mode (for changing a password), the Username value of the connection being updated will also be provided, to be displayed in read-only.
+      additionalProperties: false
+    LinkAccountListResponse:
+      type: object
+      properties:
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkAccountListResponseAccountItem'
+          description: List of available accounts
+      additionalProperties: false
+    SecurityQuestionAnswerSaveRequest:
+      required:
+      - answer
+      - link_token
+      type: object
+      properties:
+        link_token:
+          minLength: 1
+          type: string
+          description: The link_token, must be provided when calling Link endpoints, for identifying the Link session.
+        answer:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    LinkConnectionStatusResponse:
+      type: object
+      properties:
+        status:
+          allOf:
+          - $ref: '#/components/schemas/LinkConnectionStatusResponseEnum'
+          description: The current status of the connection requested
+        additional_information:
+          type:
+          - string
+          - 'null'
+          description: Additional information related to the status
+      additionalProperties: false
+    AccountSelectModeEnum:
+      enum:
+      - All
+      - Single
+      - Multiple
+      type: string
+    ErrorCodeEnum:
+      enum:
+      - DATA_SOURCE_NOT_FOUND
+      - DATA_SOURCE_NOT_RESPONDING
+      - PRODUCT_NOT_READY
+      - CONNECTION_NOT_FOUND
+      - CONNECTION_FAILED
+      - INVALID_CREDENTIALS
+      - LIVE_CONNECTIVITY_NOT_ENABLED
+      - PRODUCT_NOT_ENABLED
+      - NO_ACCOUNTS
+      - NO_STATEMENTS
+      - CONNECTION_LOCKED
+      - BLOCKED_BY_PIN
+      - VALIDATION_FAILED
+      - INVALID_API_KEYS
+      - INVALID_LINK_TOKEN
+      - INVALID_PUBLIC_TOKEN
+      - INVALID_ACCESS_TOKEN
+      - INVALID_ACCOUNT_ID
+      - INVALID_STATEMENT_ID
+      - CONSENT_REQUIRED
+      - INVALID_CURP
+      - INVALID_DOCUMENT_UPLOAD
+      - INVALID_ARGUMENT
+      - NOT_SUPPORTED
+      - UNEXPECTED_ERROR
+      - PLANNED_MAINTENANCE
+      - SECURITY_QUESTION_NOT_FOUND
+      - SECURITY_CAPTCHA_NOT_FOUND
+      - RATE_LIMIT_EXCEEDED
+      - NO_ACTIVE_CONNECTION
+      - INVALID_SOURCE
+      - ACTIVE_CONNECTION_EXISTS
+      type: string
+    LinkConnectRequestField:
+      required:
+      - field_name
+      - field_value
+      type: object
+      properties:
+        field_name:
+          type: string
+        field_value:
+          type: string
+      additionalProperties: false
+    LinkTokenCreateRequestUpdateModeEnum:
+      enum:
+      - UpdateCredentials
+      - Refresh
+      - UpdateAccountSelection
+      type: string
+    ParsingMethodEnum:
+      enum:
+      - PdfOnly
+      - Basic
+      - FullSustainability
+      - None
+      type: string
+    LinkConnectResponse:
+      type: object
+      properties:
+        public_token:
+          type:
+          - string
+          - 'null'
+          description: 'This token must be exchanged for an access_token. In Update mode for an existing connection, the public_token is not returned: There is no need to go through the process of exchanging a public_token for an access_token and the connection''s existing access_token will not change.'
+      additionalProperties: false
+    LinkConnectionStatusResponseEnum:
+      enum:
+      - New
+      - Connecting
+      - Connected
+      - InvalidCredentials
+      - Error
+      - MfaMethodChoice
+      - MfaQuestion
+      - MfaQuestionInvalidAnswer
+      - MfaQuestionNoAnswer
+      - Captcha
+      - SecurityQuestion
+      - AccountSelection
+      type: string
+  securitySchemes:
+    client_id:
+      type: apiKey
+      description: Enter your client id
+      name: x-deck-client-id
+      in: header
+    secret:
+      type: apiKey
+      description: Enter your secret
+      name: x-deck-secret
+      in: header

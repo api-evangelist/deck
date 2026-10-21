@@ -1,0 +1,749 @@
+openapi: 3.2.0
+info:
+  title: Deck Connection API
+  description: '# Deck API makes it straightforward for users to connect to any portal securely and quickly.
+
+
+    ### Welcome! Looking for a quick introduction to our API? Check out the 🚀Quickstart guide.
+
+
+    Starting on the sandbox server is easy:
+
+
+    1. Create an account using the dashboard to get your client id and sandbox secret
+
+    2. Enter your client id and sandbox secret in the Authentication section below
+
+    3. Hit the "Try" buttons below for each endpoint.
+
+
+    Happy querying!'
+  contact:
+    name: Ready to start building? Contact us!
+    url: https://deck.co
+  version: v1
+servers:
+- url: https://sandbox.deck.co/api/v1
+  description: Deck Sandbox API
+- url: https://live.deck.co/api/v1
+  description: Deck API
+tags:
+- name: Connection
+  description: Manage connections
+paths:
+  /connection/public_token/exchange:
+    post:
+      tags:
+      - Connection
+      summary: Exchange public token for an access token
+      description: Exchange a Link public_token for an API access_token. Link hands off the public_token client-side via the onSuccess callback once a user has successfully created a connection.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/ConnectionPublicTokenExchangeRequest'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/ConnectionPublicTokenExchangeRequest'
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/ConnectionPublicTokenExchangeRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionPublicTokenExchangeResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionPublicTokenExchangeResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+        '401':
+          description: Unauthorized - Invalid API key
+      security:
+      - client_id:
+        - ''
+        secret:
+        - ''
+      operationId: postConnectionPublicTokenExchange
+      x-operation-id-source: derived
+  /connection/context:
+    post:
+      tags:
+      - Connection
+      summary: Get connection status details
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/AccessTokenRequest'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/AccessTokenRequest'
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/AccessTokenRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionContextResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionContextResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+        '401':
+          description: Unauthorized - Invalid API key
+      security:
+      - client_id:
+        - ''
+        secret:
+        - ''
+      operationId: postConnectionContext
+      x-operation-id-source: derived
+  /connection/accounts:
+    post:
+      tags:
+      - Connection
+      summary: Get the connection list of account numbers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/AccessTokenRequest'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/AccessTokenRequest'
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/AccessTokenRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetConnectionAccountsResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GetConnectionAccountsResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+        '401':
+          description: Unauthorized - Invalid API key
+      security:
+      - client_id:
+        - ''
+        secret:
+        - ''
+      operationId: postConnectionAccounts
+      x-operation-id-source: derived
+  /connection/accounts/select:
+    post:
+      tags:
+      - Connection
+      summary: Update the list of accounts to be considered
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/SelectConnectionAccountsRequest'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/SelectConnectionAccountsRequest'
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/SelectConnectionAccountsRequest'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+        '401':
+          description: Unauthorized - Invalid API key
+      security:
+      - client_id:
+        - ''
+        secret:
+        - ''
+      operationId: postConnectionAccountsSelect
+      x-operation-id-source: derived
+  /connection/access_token/invalidate:
+    post:
+      tags:
+      - Connection
+      summary: Invalidate access_token
+      description: Rotate the access_token associated with a connection. The endpoint returns a new access_token and immediately invalidates the previous access_token.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/AccessTokenRequest'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/AccessTokenRequest'
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/AccessTokenRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidateAccessTokenResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/InvalidateAccessTokenResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+        '401':
+          description: Unauthorized - Invalid API key
+      security:
+      - client_id:
+        - ''
+        secret:
+        - ''
+      operationId: postConnectionAccessTokenInvalidate
+      x-operation-id-source: derived
+  /connection/auto_refresh/update:
+    post:
+      tags:
+      - Connection
+      summary: Update connection stream config
+      description: You can control which individual connections need to be regularly refreshed or not.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/AutoRefreshUpdateRequest'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/AutoRefreshUpdateRequest'
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/AutoRefreshUpdateRequest'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+        '401':
+          description: Unauthorized - Invalid API key
+      security:
+      - client_id:
+        - ''
+        secret:
+        - ''
+      operationId: postConnectionAutoRefreshUpdate
+      x-operation-id-source: derived
+  /connection/refresh:
+    post:
+      tags:
+      - Connection
+      summary: Request manual refresh
+      description: This will initiate a new session for refreshing the data related to a connection.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/RefreshConnectionRequest'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/RefreshConnectionRequest'
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/RefreshConnectionRequest'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+        '401':
+          description: Unauthorized - Invalid API key
+      security:
+      - client_id:
+        - ''
+        secret:
+        - ''
+      operationId: postConnectionRefresh
+      x-operation-id-source: derived
+  /connection/webhook/update:
+    post:
+      tags:
+      - Connection
+      summary: Update the webhook url for a connection
+      description: Decide where the webhook event should be sent to for a specific connection.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/WebhookUpdateRequest'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/WebhookUpdateRequest'
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/WebhookUpdateRequest'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+        '401':
+          description: Unauthorized - Invalid API key
+      security:
+      - client_id:
+        - ''
+        secret:
+        - ''
+      operationId: postConnectionWebhookUpdate
+      x-operation-id-source: derived
+  /connection/destroy:
+    post:
+      tags:
+      - Connection
+      summary: Delete all data related to a connection, losing access to it
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/AccessTokenRequest'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/AccessTokenRequest'
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/AccessTokenRequest'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+        '401':
+          description: Unauthorized - Invalid API key
+      security:
+      - client_id:
+        - ''
+        secret:
+        - ''
+      operationId: postConnectionDestroy
+      x-operation-id-source: derived
+components:
+  schemas:
+    ConnectionContextResponse:
+      required:
+      - entities
+      - provider
+      type: object
+      properties:
+        connection_id:
+          type: string
+          description: The Deck Connection ID associated with the access token data being requested
+          format: uuid
+        provider:
+          allOf:
+          - $ref: '#/components/schemas/Provider'
+          description: The data source associated to this connectiond
+        connection_status:
+          allOf:
+          - $ref: '#/components/schemas/ConnectivityStatusEnum'
+          description: Represents the current connection health status between the system and the data source, such as Connected or Disconnected.
+        connection_status_timestamp:
+          type: string
+          description: The UTC timestamp of when the connectivity status was last updated.
+          format: date-time
+        connection_status_reason:
+          allOf:
+          - $ref: '#/components/schemas/ScrapingStatusEnum'
+          description: Represents the most recent scraping result for this connection, providing additional context to the connectivity status.
+        num_of_entities:
+          type: integer
+          description: Represents the number of accounts.
+          format: int32
+          readOnly: true
+        entities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Entity'
+          description: A list of entities associated with this connection.
+      additionalProperties: false
+    AccessTokenRequest:
+      required:
+      - access_token
+      type: object
+      properties:
+        access_token:
+          minLength: 1
+          type: string
+          description: The access token associated with the Item data is being requested for
+      additionalProperties: false
+    ErrorCategoryEnum:
+      enum:
+      - INVALID_REQUEST
+      - INVALID_RESULT
+      - INVALID_INPUT
+      - DATA_SOURCE_ERROR
+      - RATE_LIMIT_EXCEEDED
+      - API_ERROR
+      - CONNECTION_ERROR
+      - RECAPTCHA_ERROR
+      - FETCH_BALANCE
+      - ADD_PAYMENT_METHOD
+      - FETCH_PAYMENT_METHODS
+      - PAYMENT
+      type: string
+    ConnectionPublicTokenExchangeResponse:
+      required:
+      - fields
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: The access token associated with the connection data is being requested for
+        connection_id:
+          type: string
+          description: The Deck Connection ID for the connection associated with the returned access token
+          format: uuid
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkConnectRequestField'
+          description: List of non-sensitive values provided from the Link session by the user
+      additionalProperties: false
+    ErrorMessageResponse:
+      type: object
+      properties:
+        error_category:
+          allOf:
+          - $ref: '#/components/schemas/ErrorCategoryEnum'
+          description: A broad categorization of the error. Safe for programmatic use.
+        error_code:
+          allOf:
+          - $ref: '#/components/schemas/ErrorCodeEnum'
+          description: The particular error code. Safe for programmatic use.
+        error_message:
+          type: string
+          description: A developer-friendly representation of the error code. This may change over time and is not safe for programmatic use.
+        display_message:
+          type:
+          - string
+          - 'null'
+          description: A user-friendly representation of the error code. null if the error is not related to user action. This may change over time and is not safe for programmatic use.
+      additionalProperties: false
+    AutoRefreshUpdateRequest:
+      required:
+      - access_token
+      - auto_refresh
+      type: object
+      properties:
+        access_token:
+          minLength: 1
+          type: string
+          description: The access token associated with the Item data is being requested for
+        auto_refresh:
+          type: boolean
+          description: Flag to toggle the automatic refresh when new connection's data is found
+      additionalProperties: false
+    GetConnectionAccountsResponse:
+      type: object
+      properties:
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/GetConnectionAccountsResponseAccount'
+      additionalProperties: false
+    ConnectivityStatusEnum:
+      enum:
+      - New
+      - Connecting
+      - Connected
+      - Disconnected
+      - Error
+      type: string
+    Provider:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the data provider associated to this connectiond
+          format: uuid
+        name:
+          type: string
+          description: Name of the data source provider to this connection
+      additionalProperties: false
+    InvalidateAccessTokenResponse:
+      type: object
+      properties:
+        new_access_token:
+          type: string
+          description: The access token associated with the connection data being requested
+      additionalProperties: false
+    Entity:
+      required:
+      - account_number
+      type: object
+      properties:
+        account_number:
+          type: string
+      additionalProperties: false
+    RefreshConnectionRequest:
+      required:
+      - access_token
+      type: object
+      properties:
+        access_token:
+          minLength: 1
+          type: string
+          description: The access token associated with the Item data is being requested for
+        account_numbers:
+          type: array
+          items:
+            type: string
+      additionalProperties: false
+    GetConnectionAccountsRequestAccount:
+      required:
+      - account_number
+      - is_selected
+      type: object
+      properties:
+        account_number:
+          type:
+          - string
+          - 'null'
+        is_selected:
+          type: boolean
+      additionalProperties: false
+    WebhookUpdateRequest:
+      required:
+      - access_token
+      - is_active
+      - url
+      type: object
+      properties:
+        access_token:
+          minLength: 1
+          type: string
+          description: The access token associated with the Item data is being requested for
+        url:
+          minLength: 1
+          type: string
+          description: The URL of the webhook
+        is_active:
+          type: boolean
+          description: The status of the webhook. If true, the webhook is active. If false, the webhook is inactive.
+      additionalProperties: false
+    ErrorCodeEnum:
+      enum:
+      - DATA_SOURCE_NOT_FOUND
+      - DATA_SOURCE_NOT_RESPONDING
+      - PRODUCT_NOT_READY
+      - CONNECTION_NOT_FOUND
+      - CONNECTION_FAILED
+      - INVALID_CREDENTIALS
+      - LIVE_CONNECTIVITY_NOT_ENABLED
+      - PRODUCT_NOT_ENABLED
+      - NO_ACCOUNTS
+      - NO_STATEMENTS
+      - CONNECTION_LOCKED
+      - BLOCKED_BY_PIN
+      - VALIDATION_FAILED
+      - INVALID_API_KEYS
+      - INVALID_LINK_TOKEN
+      - INVALID_PUBLIC_TOKEN
+      - INVALID_ACCESS_TOKEN
+      - INVALID_ACCOUNT_ID
+      - INVALID_STATEMENT_ID
+      - CONSENT_REQUIRED
+      - INVALID_CURP
+      - INVALID_DOCUMENT_UPLOAD
+      - INVALID_ARGUMENT
+      - NOT_SUPPORTED
+      - UNEXPECTED_ERROR
+      - PLANNED_MAINTENANCE
+      - SECURITY_QUESTION_NOT_FOUND
+      - SECURITY_CAPTCHA_NOT_FOUND
+      - RATE_LIMIT_EXCEEDED
+      - NO_ACTIVE_CONNECTION
+      - INVALID_SOURCE
+      - ACTIVE_CONNECTION_EXISTS
+      type: string
+    ScrapingStatusEnum:
+      enum:
+      - New
+      - Connecting
+      - CredentialsSent
+      - InvalidCredentials
+      - ConnectedCredentials
+      - SecurityAnswerRequired
+      - SecurityAnswerInvalid
+      - SecurityQuestionTimeout
+      - MfaMethodChoiceRequired
+      - MfaCodeRequired
+      - MfaCodeInvalid
+      - MfaCodeTimeout
+      - MfaActionRequired
+      - BlockedByPin
+      - AccountSelectionRequired
+      - WaitingForJob
+      - ExecutingJob
+      - CompletedJob
+      - RetryLater
+      - DataFound
+      - ConnectedWaitingOnDataExtraction
+      - NoDataFound
+      - NoStatement
+      - Error
+      type: string
+    LinkConnectRequestField:
+      required:
+      - field_name
+      - field_value
+      type: object
+      properties:
+        field_name:
+          type: string
+        field_value:
+          type: string
+      additionalProperties: false
+    GetConnectionAccountsResponseAccount:
+      required:
+      - account_number
+      - is_selected
+      type: object
+      properties:
+        account_number:
+          type: string
+        is_selected:
+          type: boolean
+      additionalProperties: false
+    SelectConnectionAccountsRequest:
+      required:
+      - access_token
+      type: object
+      properties:
+        access_token:
+          minLength: 1
+          type: string
+          description: The access token associated with the Item data is being requested for
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/GetConnectionAccountsRequestAccount'
+      additionalProperties: false
+    ConnectionPublicTokenExchangeRequest:
+      required:
+      - public_token
+      type: object
+      properties:
+        public_token:
+          minLength: 1
+          type: string
+          description: Your public_token, obtained from the Link onSuccess callback
+      additionalProperties: false
+  securitySchemes:
+    client_id:
+      type: apiKey
+      description: Enter your client id
+      name: x-deck-client-id
+      in: header
+    secret:
+      type: apiKey
+      description: Enter your secret
+      name: x-deck-secret
+      in: header

@@ -1,0 +1,26 @@
+generated: '2026-10-20'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://deck.co/pricing
+sources:
+- https://deck.co/pricing
+name: Deck pricing
+audience: business-product
+pricing_basis: per-seat
+plans:
+- name: Free
+  price_text: $0
+  price: 0
+  description: Try Deck on real portals.
+- name: Starter
+  price_text: $25 /mo
+  price: 25
+  description: For teams getting started with agents.
+- name: Pro
+  price_text: $250 /mo
+  price: 250
+  description: Scale for production.
+- name: Enterprise
+  price_text: Custom
+  description: Custom infrastructure and terms.
+docs: https://deck.co/pricing

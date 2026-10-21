@@ -1,0 +1,15 @@
+generated: '2026-10-20'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://docs.deck.co/api/rate-limits.md
+sources:
+- https://docs.deck.co/api/rate-limits.md
+name: Deck rate limits
+limits:
+- name: API request rate limit
+  limit_text: 200 requests per 10 seconds per organization
+  max: 200
+  window: 10 seconds
+  scope: organization
+exhaustion_status: 429
+docs: https://docs.deck.co/api/rate-limits.md

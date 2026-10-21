@@ -1,0 +1,357 @@
+{
+  "@context": {
+    "@vocab": "https://deck.co/schema#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "deck": "https://deck.co/schema#",
+    "AccessTokenRequest": "deck:AccessTokenRequest",
+    "access_token": {
+      "@id": "deck:access_token",
+      "@type": "xsd:string"
+    },
+    "AccountSelectModeEnum": "deck:AccountSelectModeEnum",
+    "AlreadyRunningJobResponse": "deck:AlreadyRunningJobResponse",
+    "job_id": {
+      "@id": "deck:job_id",
+      "@type": "xsd:string"
+    },
+    "job_guid": {
+      "@id": "deck:job_guid",
+      "@type": "xsd:string"
+    },
+    "message": {
+      "@id": "deck:message",
+      "@type": "xsd:string"
+    },
+    "error_message": {
+      "@id": "deck:error_message",
+      "@type": "xsd:string"
+    },
+    "AutoRefreshUpdateRequest": "deck:AutoRefreshUpdateRequest",
+    "auto_refresh": {
+      "@id": "deck:auto_refresh",
+      "@type": "xsd:boolean"
+    },
+    "BadRequestJobResponse": "deck:BadRequestJobResponse",
+    "error_code": {
+      "@id": "deck:error_code"
+    },
+    "BetaSourceStatusEnum": "deck:BetaSourceStatusEnum",
+    "ConnectionContextResponse": "deck:ConnectionContextResponse",
+    "connection_id": {
+      "@id": "deck:connection_id",
+      "@type": "xsd:string"
+    },
+    "provider": {
+      "@id": "deck:provider"
+    },
+    "connection_status": {
+      "@id": "deck:connection_status"
+    },
+    "connection_status_timestamp": {
+      "@id": "deck:connection_status_timestamp",
+      "@type": "xsd:dateTime"
+    },
+    "connection_status_reason": {
+      "@id": "deck:connection_status_reason"
+    },
+    "num_of_entities": {
+      "@id": "deck:num_of_entities",
+      "@type": "xsd:integer"
+    },
+    "entities": {
+      "@id": "deck:entities",
+      "@container": "@list"
+    },
+    "ConnectionPublicTokenExchangeRequest": "deck:ConnectionPublicTokenExchangeRequest",
+    "public_token": {
+      "@id": "deck:public_token",
+      "@type": "xsd:string"
+    },
+    "ConnectionPublicTokenExchangeResponse": "deck:ConnectionPublicTokenExchangeResponse",
+    "fields": {
+      "@id": "deck:fields",
+      "@container": "@list"
+    },
+    "ConnectivityStatusEnum": "deck:ConnectivityStatusEnum",
+    "DocumentInfo": "deck:DocumentInfo",
+    "document_id": {
+      "@id": "deck:document_id",
+      "@type": "xsd:string"
+    },
+    "file_type": {
+      "@id": "deck:file_type",
+      "@type": "xsd:string"
+    },
+    "metadata": {
+      "@id": "deck:metadata"
+    },
+    "file_name": {
+      "@id": "deck:file_name",
+      "@type": "xsd:string"
+    },
+    "file_size": {
+      "@id": "deck:file_size",
+      "@type": "xsd:integer"
+    },
+    "fetch_date": {
+      "@id": "deck:fetch_date",
+      "@type": "xsd:dateTime"
+    },
+    "DocumentListResponse": "deck:DocumentListResponse",
+    "documents": {
+      "@id": "deck:documents",
+      "@container": "@list"
+    },
+    "Entity": "deck:Entity",
+    "account_number": {
+      "@id": "deck:account_number",
+      "@type": "xsd:string"
+    },
+    "ErrorCategoryEnum": "deck:ErrorCategoryEnum",
+    "ErrorCodeEnum": "deck:ErrorCodeEnum",
+    "ErrorMessageResponse": "deck:ErrorMessageResponse",
+    "error_category": {
+      "@id": "deck:error_category"
+    },
+    "display_message": {
+      "@id": "deck:display_message",
+      "@type": "xsd:string"
+    },
+    "FieldTypeEnum": "deck:FieldTypeEnum",
+    "GetConnectionAccountsRequestAccount": "deck:GetConnectionAccountsRequestAccount",
+    "is_selected": {
+      "@id": "deck:is_selected",
+      "@type": "xsd:boolean"
+    },
+    "GetConnectionAccountsResponse": "deck:GetConnectionAccountsResponse",
+    "accounts": {
+      "@id": "deck:accounts",
+      "@container": "@list"
+    },
+    "GetConnectionAccountsResponseAccount": "deck:GetConnectionAccountsResponseAccount",
+    "IJobRequest": "deck:IJobRequest",
+    "job_code": {
+      "@id": "deck:job_code",
+      "@type": "xsd:string"
+    },
+    "input": {
+      "@id": "deck:input"
+    },
+    "InvalidateAccessTokenResponse": "deck:InvalidateAccessTokenResponse",
+    "new_access_token": {
+      "@id": "deck:new_access_token",
+      "@type": "xsd:string"
+    },
+    "JobResponse": "deck:JobResponse",
+    "LanguageEnum": "deck:LanguageEnum",
+    "LinkAccountListResponse": "deck:LinkAccountListResponse",
+    "LinkAccountListResponseAccountItem": "deck:LinkAccountListResponseAccountItem",
+    "account_id": {
+      "@id": "deck:account_id",
+      "@type": "xsd:string"
+    },
+    "account_address": {
+      "@id": "deck:account_address",
+      "@type": "xsd:string"
+    },
+    "LinkAccountSelectRequest": "deck:LinkAccountSelectRequest",
+    "link_token": {
+      "@id": "deck:link_token",
+      "@type": "xsd:string"
+    },
+    "LinkClientInfoResponse": "deck:LinkClientInfoResponse",
+    "name": {
+      "@id": "deck:name",
+      "@type": "xsd:string"
+    },
+    "image_url": {
+      "@id": "deck:image_url",
+      "@type": "xsd:string"
+    },
+    "language": {
+      "@id": "deck:language"
+    },
+    "update_mode": {
+      "@id": "deck:update_mode"
+    },
+    "terms_of_use_url": {
+      "@id": "deck:terms_of_use_url",
+      "@type": "xsd:string"
+    },
+    "privacy_policy_url": {
+      "@id": "deck:privacy_policy_url",
+      "@type": "xsd:string"
+    },
+    "mode": {
+      "@id": "deck:mode"
+    },
+    "account_select_mode": {
+      "@id": "deck:account_select_mode"
+    },
+    "allow_document_upload": {
+      "@id": "deck:allow_document_upload",
+      "@type": "xsd:boolean"
+    },
+    "show_step_consent": {
+      "@id": "deck:show_step_consent",
+      "@type": "xsd:boolean"
+    },
+    "show_step_add_source": {
+      "@id": "deck:show_step_add_source",
+      "@type": "xsd:boolean"
+    },
+    "show_step_select_account": {
+      "@id": "deck:show_step_select_account",
+      "@type": "xsd:boolean"
+    },
+    "show_step_add_account": {
+      "@id": "deck:show_step_add_account",
+      "@type": "xsd:boolean"
+    },
+    "LinkClientInfoResponseUpdateMode": "deck:LinkClientInfoResponseUpdateMode",
+    "source": {
+      "@id": "deck:source"
+    },
+    "LinkConnectRequest": "deck:LinkConnectRequest",
+    "source_id": {
+      "@id": "deck:source_id",
+      "@type": "xsd:string"
+    },
+    "LinkConnectRequestField": "deck:LinkConnectRequestField",
+    "field_name": {
+      "@id": "deck:field_name",
+      "@type": "xsd:string"
+    },
+    "field_value": {
+      "@id": "deck:field_value",
+      "@type": "xsd:string"
+    },
+    "LinkConnectResponse": "deck:LinkConnectResponse",
+    "LinkConnectionStatusResponse": "deck:LinkConnectionStatusResponse",
+    "status": {
+      "@id": "deck:status"
+    },
+    "additional_information": {
+      "@id": "deck:additional_information",
+      "@type": "xsd:string"
+    },
+    "LinkConnectionStatusResponseEnum": "deck:LinkConnectionStatusResponseEnum",
+    "LinkSourcesRequest": "deck:LinkSourcesRequest",
+    "search": {
+      "@id": "deck:search",
+      "@type": "xsd:string"
+    },
+    "LinkSourcesResponse": "deck:LinkSourcesResponse",
+    "sources": {
+      "@id": "deck:sources",
+      "@container": "@list"
+    },
+    "LinkSourcesResponseSource": "deck:LinkSourcesResponseSource",
+    "logo_url": {
+      "@id": "deck:logo_url",
+      "@type": "xsd:string"
+    },
+    "country": {
+      "@id": "deck:country",
+      "@type": "xsd:string"
+    },
+    "website": {
+      "@id": "deck:website",
+      "@type": "xsd:string"
+    },
+    "LinkSourcesResponseSourceField": "deck:LinkSourcesResponseSourceField",
+    "field_number": {
+      "@id": "deck:field_number",
+      "@type": "xsd:integer"
+    },
+    "field_label": {
+      "@id": "deck:field_label",
+      "@type": "xsd:string"
+    },
+    "field_type": {
+      "@id": "deck:field_type"
+    },
+    "LinkTokenCreateRequest": "deck:LinkTokenCreateRequest",
+    "countries": {
+      "@id": "deck:countries",
+      "@container": "@list"
+    },
+    "source_ids": {
+      "@id": "deck:source_ids",
+      "@container": "@list"
+    },
+    "source_types": {
+      "@id": "deck:source_types",
+      "@container": "@list"
+    },
+    "beta_source_status": {
+      "@id": "deck:beta_source_status"
+    },
+    "update": {
+      "@id": "deck:update"
+    },
+    "webhook_url": {
+      "@id": "deck:webhook_url",
+      "@type": "xsd:string"
+    },
+    "parsing_method": {
+      "@id": "deck:parsing_method"
+    },
+    "latest_invoice_only": {
+      "@id": "deck:latest_invoice_only",
+      "@type": "xsd:boolean"
+    },
+    "LinkTokenCreateRequestUpdate": "deck:LinkTokenCreateRequestUpdate",
+    "LinkTokenCreateRequestUpdateModeEnum": "deck:LinkTokenCreateRequestUpdateModeEnum",
+    "LinkTokenGetResponse": "deck:LinkTokenGetResponse",
+    "source_guids": {
+      "@id": "deck:source_guids",
+      "@container": "@list"
+    },
+    "LinkTokenModeEnum": "deck:LinkTokenModeEnum",
+    "LinkTokenRequestResponse": "deck:LinkTokenRequestResponse",
+    "MfaAnswerRequest": "deck:MfaAnswerRequest",
+    "answer": {
+      "@id": "deck:answer",
+      "@type": "xsd:string"
+    },
+    "ParsingMethodEnum": "deck:ParsingMethodEnum",
+    "Provider": "deck:Provider",
+    "id": {
+      "@id": "deck:id",
+      "@type": "xsd:string"
+    },
+    "RawDocumentRequest": "deck:RawDocumentRequest",
+    "RefreshConnectionRequest": "deck:RefreshConnectionRequest",
+    "account_numbers": {
+      "@id": "deck:account_numbers",
+      "@container": "@list"
+    },
+    "ScrapingStatusEnum": "deck:ScrapingStatusEnum",
+    "SecurityQuestionAnswerSaveRequest": "deck:SecurityQuestionAnswerSaveRequest",
+    "SecurityQuestionResponse": "deck:SecurityQuestionResponse",
+    "question": {
+      "@id": "deck:question",
+      "@type": "xsd:string"
+    },
+    "SelectConnectionAccountsRequest": "deck:SelectConnectionAccountsRequest",
+    "WebhookUpdateRequest": "deck:WebhookUpdateRequest",
+    "url": {
+      "@id": "deck:url",
+      "@type": "xsd:string"
+    },
+    "is_active": {
+      "@id": "deck:is_active",
+      "@type": "xsd:boolean"
+    }
+  },
+  "@type": "schema:Dataset",
+  "schema:name": "Deck API JSON-LD context",
+  "schema:description": "A JSON-LD @context for the objects Deck's own API contract declares: one class per component schema, one property per declared field, typed from the contract. Derived by script (derive-json-ld.py, 2026-10-20) from openapi/deck-openapi.json.",
+  "dcterms:created": "2026-10-20",
+  "dcterms:source": [
+    "openapi/deck-openapi.json"
+  ]
+}

@@ -1,0 +1,527 @@
+openapi: 3.2.0
+info:
+  title: Deck Jobs API
+  description: '# Deck API makes it straightforward for users to connect to any portal securely and quickly.
+
+
+    ### Welcome! Looking for a quick introduction to our API? Check out the 🚀Quickstart guide.
+
+
+    Starting on the sandbox server is easy:
+
+
+    1. Create an account using the dashboard to get your client id and sandbox secret
+
+    2. Enter your client id and sandbox secret in the Authentication section below
+
+    3. Hit the "Try" buttons below for each endpoint.
+
+
+    Happy querying!'
+  contact:
+    name: Ready to start building? Contact us!
+    url: https://deck.co
+  version: v1
+servers:
+- url: https://sandbox.deck.co/api/v1
+  description: Deck Sandbox API
+- url: https://live.deck.co/api/v1
+  description: Deck API
+tags:
+- name: Jobs
+  description: Endpoints related to jobs.
+paths:
+  /jobs/submit:
+    post:
+      tags:
+      - Jobs
+      summary: Send your job requests
+      description: Provide a job code along with its input parameters to execute it
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - job_code
+              - input
+              type: object
+              allOf:
+              - $ref: '#/components/schemas/IJobRequest'
+              properties:
+                job_code:
+                  type: string
+                  description: The job type identifier
+                  example: FetchDocuments
+                input:
+                  type: object
+                  additionalProperties:
+                    type: string
+                    description: Dynamic inputs based on your job type
+                  description: Dynamic input object - structure varies by job type
+                  example:
+                    access_token: access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7
+                    key1: value1
+                    someProperty: someValue
+          text/json:
+            schema:
+              required:
+              - job_code
+              - input
+              type: object
+              allOf:
+              - $ref: '#/components/schemas/IJobRequest'
+              properties:
+                job_code:
+                  type: string
+                  description: The job type identifier
+                  example: FetchDocuments
+                input:
+                  type: object
+                  additionalProperties:
+                    type: string
+                    description: Dynamic inputs based on your job type
+                  description: Dynamic input object - structure varies by job type
+                  example:
+                    access_token: access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7
+                    key1: value1
+                    someProperty: someValue
+          application/*+json:
+            schema:
+              required:
+              - job_code
+              - input
+              type: object
+              allOf:
+              - $ref: '#/components/schemas/IJobRequest'
+              properties:
+                job_code:
+                  type: string
+                  description: The job type identifier
+                  example: FetchDocuments
+                input:
+                  type: object
+                  additionalProperties:
+                    type: string
+                    description: Dynamic inputs based on your job type
+                  description: Dynamic input object - structure varies by job type
+                  example:
+                    access_token: access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7
+                    key1: value1
+                    someProperty: someValue
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/JobResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestJobResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestJobResponse'
+        '401':
+          description: Unauthorized - Invalid API key
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlreadyRunningJobResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AlreadyRunningJobResponse'
+      security:
+      - client_id:
+        - ''
+        secret:
+        - ''
+      operationId: postJobsSubmit
+      x-operation-id-source: derived
+  /jobs/mfa/answer:
+    post:
+      tags:
+      - Jobs
+      summary: Provide MFA code
+      description: Call this endpoint to send your MFA code
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/MfaAnswerRequest'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/MfaAnswerRequest'
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/MfaAnswerRequest'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+        '401':
+          description: Unauthorized - Invalid API key
+      security:
+      - client_id:
+        - ''
+        secret:
+        - ''
+      operationId: postJobsMfaAnswer
+      x-operation-id-source: derived
+  /jobs/documents/list:
+    post:
+      tags:
+      - Jobs
+      summary: List documents
+      description: Returns a list of documents available for the connection associated with the provided link token
+      parameters:
+      - name: job_guid
+        in: query
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/AccessTokenRequest'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/AccessTokenRequest'
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/AccessTokenRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentListResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DocumentListResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+        '401':
+          description: Unauthorized - Invalid API key
+      security:
+      - client_id:
+        - ''
+        secret:
+        - ''
+      operationId: postJobsDocumentsList
+      x-operation-id-source: derived
+  /jobs/documents/file:
+    post:
+      tags:
+      - Jobs
+      summary: Get raw file
+      description: Returns the raw file for the document with the provided document ID
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/RawDocumentRequest'
+          text/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/RawDocumentRequest'
+          application/*+json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/RawDocumentRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+                format: binary
+            text/json:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessageResponse'
+        '401':
+          description: Unauthorized - Invalid API key
+      security:
+      - client_id:
+        - ''
+        secret:
+        - ''
+      operationId: postJobsDocumentsFile
+      x-operation-id-source: derived
+components:
+  schemas:
+    AccessTokenRequest:
+      required:
+      - access_token
+      type: object
+      properties:
+        access_token:
+          minLength: 1
+          type: string
+          description: The access token associated with the Item data is being requested for
+      additionalProperties: false
+    DocumentInfo:
+      required:
+      - document_id
+      - file_type
+      type: object
+      properties:
+        document_id:
+          minLength: 1
+          type: string
+        file_type:
+          minLength: 1
+          type: string
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+        file_name:
+          type:
+          - string
+          - 'null'
+        file_size:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        fetch_date:
+          type: string
+          format: date-time
+      additionalProperties: false
+    RawDocumentRequest:
+      required:
+      - access_token
+      - document_id
+      type: object
+      properties:
+        access_token:
+          minLength: 1
+          type: string
+          description: The access token associated with the Item data is being requested for
+        document_id:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    JobResponse:
+      required:
+      - job_code
+      - job_guid
+      type: object
+      properties:
+        job_guid:
+          type: string
+          description: The unique identifier of the job.
+          format: uuid
+        job_code:
+          type: string
+          description: The code representing the type of job executed.
+      additionalProperties: false
+    AlreadyRunningJobResponse:
+      required:
+      - error_message
+      - job_guid
+      - job_id
+      - message
+      type: object
+      properties:
+        job_id:
+          type: string
+          description: '[Obsolete] Legacy identifier of the job. Use JobGuid instead.'
+          format: uuid
+          deprecated: true
+        job_guid:
+          type: string
+          description: Unique identifier of the already running job.
+          format: uuid
+        message:
+          type: string
+          description: '[Obsolete] Legacy message describing the conflict. Use ErrorMessage instead.'
+          deprecated: true
+        error_message:
+          type: string
+          description: A human-readable error message indicating the job is already in progress.
+      additionalProperties: false
+    ErrorCategoryEnum:
+      enum:
+      - INVALID_REQUEST
+      - INVALID_RESULT
+      - INVALID_INPUT
+      - DATA_SOURCE_ERROR
+      - RATE_LIMIT_EXCEEDED
+      - API_ERROR
+      - CONNECTION_ERROR
+      - RECAPTCHA_ERROR
+      - FETCH_BALANCE
+      - ADD_PAYMENT_METHOD
+      - FETCH_PAYMENT_METHODS
+      - PAYMENT
+      type: string
+    ErrorCodeEnum:
+      enum:
+      - DATA_SOURCE_NOT_FOUND
+      - DATA_SOURCE_NOT_RESPONDING
+      - PRODUCT_NOT_READY
+      - CONNECTION_NOT_FOUND
+      - CONNECTION_FAILED
+      - INVALID_CREDENTIALS
+      - LIVE_CONNECTIVITY_NOT_ENABLED
+      - PRODUCT_NOT_ENABLED
+      - NO_ACCOUNTS
+      - NO_STATEMENTS
+      - CONNECTION_LOCKED
+      - BLOCKED_BY_PIN
+      - VALIDATION_FAILED
+      - INVALID_API_KEYS
+      - INVALID_LINK_TOKEN
+      - INVALID_PUBLIC_TOKEN
+      - INVALID_ACCESS_TOKEN
+      - INVALID_ACCOUNT_ID
+      - INVALID_STATEMENT_ID
+      - CONSENT_REQUIRED
+      - INVALID_CURP
+      - INVALID_DOCUMENT_UPLOAD
+      - INVALID_ARGUMENT
+      - NOT_SUPPORTED
+      - UNEXPECTED_ERROR
+      - PLANNED_MAINTENANCE
+      - SECURITY_QUESTION_NOT_FOUND
+      - SECURITY_CAPTCHA_NOT_FOUND
+      - RATE_LIMIT_EXCEEDED
+      - NO_ACTIVE_CONNECTION
+      - INVALID_SOURCE
+      - ACTIVE_CONNECTION_EXISTS
+      type: string
+    ErrorMessageResponse:
+      type: object
+      properties:
+        error_category:
+          allOf:
+          - $ref: '#/components/schemas/ErrorCategoryEnum'
+          description: A broad categorization of the error. Safe for programmatic use.
+        error_code:
+          allOf:
+          - $ref: '#/components/schemas/ErrorCodeEnum'
+          description: The particular error code. Safe for programmatic use.
+        error_message:
+          type: string
+          description: A developer-friendly representation of the error code. This may change over time and is not safe for programmatic use.
+        display_message:
+          type:
+          - string
+          - 'null'
+          description: A user-friendly representation of the error code. null if the error is not related to user action. This may change over time and is not safe for programmatic use.
+      additionalProperties: false
+    BadRequestJobResponse:
+      required:
+      - error_code
+      - error_message
+      type: object
+      properties:
+        error_code:
+          allOf:
+          - $ref: '#/components/schemas/ErrorCodeEnum'
+          description: A predefined error code indicating the specific reason for the failure.
+        message:
+          type: string
+          description: '[Obsolete] Legacy message describing the conflict. Use ErrorMessage instead.'
+          deprecated: true
+        error_message:
+          type: string
+          description: ' A human-readable error message indicating the job is already in progress.'
+      additionalProperties: false
+    MfaAnswerRequest:
+      required:
+      - answer
+      type: object
+      properties:
+        job_guid:
+          type: string
+          format: uuid
+        answer:
+          type: string
+      additionalProperties: false
+    IJobRequest:
+      required:
+      - job_code
+      - input
+      type: object
+      properties:
+        job_code:
+          type: string
+          description: The job type identifier
+          example: FetchDocuments
+        input:
+          type: object
+          additionalProperties:
+            type: string
+            description: Dynamic inputs based on your job type
+          description: Dynamic input object - structure varies by job type
+          example:
+            access_token: access-development-6599f8dd-1a1c-4586-39d1-08ddb97283f7
+            key1: value1
+            someProperty: someValue
+      additionalProperties: false
+    DocumentListResponse:
+      required:
+      - documents
+      type: object
+      properties:
+        documents:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentInfo'
+      additionalProperties: false
+  securitySchemes:
+    client_id:
+      type: apiKey
+      description: Enter your client id
+      name: x-deck-client-id
+      in: header
+    secret:
+      type: apiKey
+      description: Enter your secret
+      name: x-deck-secret
+      in: header

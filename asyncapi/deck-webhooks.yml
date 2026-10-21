@@ -1,0 +1,50 @@
+generated: '2026-10-20'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://docs.deck.co/events/webhook-best-practices.md
+sources:
+- https://docs.deck.co/events/webhook-best-practices.md
+- https://docs.deck.co/events/events.md
+- https://docs.deck.co/events/destinations-and-deliveries.md
+- https://docs.deck.co/events/events-reference.md
+description: Deck webhooks deliver events as HTTP POST requests signed with the Standard Webhooks specification.
+events:
+- event: agent.created
+  description: An agent is created
+- event: agent.updated
+  description: An agent is updated
+- event: agent.deleted
+  description: An agent is deleted
+- event: source.created
+  description: A source is created
+- event: source.updated
+  description: A source is updated
+- event: source.deleted
+  description: A source is deleted
+- event: credential.created
+  description: A new credential is created with `unverified` status
+- event: credential.unverified
+  description: A `verified` or `invalid` credential's auth details were updated, resetting it to `unverified`
+- event: credential.verified
+  description: A task run using the credential completed successfully, moving it to `verified`
+- event: credential.invalid
+  description: Credentials were rejected by the source
+- event: credential.deleted
+  description: Credential was permanently removed from the vault
+- event: session.queued
+  description: Session is waiting to be provisioned
+- event: session.running
+  description: Session is active and executing
+- event: session.idle
+  description: No active tasks, session is waiting for new work
+- event: session.completing
+  description: Work is done, session is shutting down
+- event: session.completed
+  description: Session finished and was closed
+- event: session.failed
+  description: Session encountered an error
+delivery:
+  signature: Standard Webhooks specification – each delivery includes `webhook-id`, `webhook-timestamp`, and `webhook-signature` headers. Verification
+    uses the secret (`whsec_` prefix) you provide.
+  retries: Failed deliveries are retried up to **10 times** with exponential backoff (base 2, starting at 30 seconds).
+docs: https://docs.deck.co/events/webhook-best-practices.md

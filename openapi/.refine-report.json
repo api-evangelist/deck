@@ -1,0 +1,21 @@
+{
+  "provider": "deck",
+  "sources": [
+    "deck-openapi.json"
+  ],
+  "outputs": [
+    "deck-connection-api-openapi.yml",
+    "deck-jobs-api-openapi.yml",
+    "deck-link-api-openapi.yml"
+  ],
+  "archived": [
+    "archived openapi/deck-openapi.json"
+  ],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "deck-openapi.json: upgraded openapi 3.0.4 -> OpenAPI 3.2.0",
+    "apis.yml register: written (+3 apis, 3 total)"
+  ],
+  "skipped": []
+}
